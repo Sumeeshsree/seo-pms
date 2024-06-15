@@ -1,46 +1,43 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addProject } from '../redux/actions';
+import React, { useState, useEffect } from 'react';
+import './ProjectForm.css';
 
-const ProjectForm = () => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const dispatch = useDispatch();
+const ProjectForm = ({ onSubmit, initialData }) => {
+  const [formData, setFormData] = useState({ name: '', description: '', tasks: [] });
+
+  useEffect(() => {
+    if (initialData) {
+      setFormData(initialData);
+    }
+  }, [initialData]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProject = {
-      id: Date.now(),
-      name,
-      description,
-      tasks: []
-    };
-    dispatch(addProject(newProject));
-    setName('');
-    setDescription('');
+    onSubmit(formData);
+    setFormData({ name: '', description: '', tasks: [] });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Project Name:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Description:</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Add Project</button>
+    <form className="project-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="name"
+        placeholder="Project Name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+      />
+      <textarea
+        name="description"
+        placeholder="Project Description"
+        value={formData.description}
+        onChange={handleChange}
+        required
+      />
+      <button type="submit">{initialData ? 'Update Project' : 'Create Project'}</button>
     </form>
   );
 };

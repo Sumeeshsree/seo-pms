@@ -1,29 +1,51 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../redux/actions';
+import React, { useState, useEffect } from 'react';
+import './TaskForm.css';
 
-const TaskForm = ({ projectId }) => {
-  const [task, setTask] = useState('');
-  const dispatch = useDispatch();
+const TaskForm = ({ onSubmit, initialData }) => {
+  const [formData, setFormData] = useState({ name: '', description: '', status: '' });
+
+  useEffect(() => {
+    if (initialData) {
+      setFormData(initialData);
+    }
+  }, [initialData]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask(projectId, task));
-    setTask('');
+    onSubmit(formData);
+    setFormData({ name: '', description: '', status: '' });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>New Task:</label>
-        <input
-          type="text"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Add Task</button>
+    <form className="task-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="name"
+        placeholder="Task Name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+      />
+      <textarea
+        name="description"
+        placeholder="Task Description"
+        value={formData.description}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="status"
+        placeholder="Status"
+        value={formData.status}
+        onChange={handleChange}
+        required
+      />
+      <button type="submit">{initialData ? 'Update Task' : 'Create Task'}</button>
     </form>
   );
 };
