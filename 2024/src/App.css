@@ -1,14 +1,19 @@
-body {
-  background-color: #181b34;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
+.app-container {
+  display: flex;
 }
 
-.App {
-  text-align: center;
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #181b34;
+  color: white;
+  transition: margin-left 0.3s;
+}
+
+.content.collapsed {
+  margin-left: 50px;
+}
+
+.content.expanded {
+  margin-left: 250px;
 }
