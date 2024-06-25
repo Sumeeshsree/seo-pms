@@ -1,10 +1,13 @@
 import React from 'react';
-import Routes from './routes';
+import ItemList from './components/ItemList';
+import './App.css';
 
-const App = () => (
-  <div>
-    <Routes />
-  </div>
-);
+function App() {
+  return (
+    <div className="App">
+      <ItemList />
+    </div>
+  );
+}
 
 export default App;

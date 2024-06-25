@@ -1,0 +1,33 @@
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold; /* Makes the title bold */
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold; /* Makes the header bold */
+    text-align: center; /* Aligns the header text to center */
+  }
+
+  .header span {
+    flex: 1;
+  }
+
+  .header span:first-child {
+    flex: 0.5;
+  }
+
+  .header span:last-child {
+    flex: 1.5;
+  }
