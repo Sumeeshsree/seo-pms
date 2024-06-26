@@ -53,7 +53,7 @@ const ItemForm = ({ addItem, updateItem, editItem }) => {
       <input
         className="input"
         type="text"
-        placeholder="Item Name"
+        placeholder="Task Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
@@ -101,7 +101,7 @@ const ItemForm = ({ addItem, updateItem, editItem }) => {
         value={projectName}
         onChange={(e) => setProjectName(e.target.value)}
       />
-      <button className="button" type="submit">{editItem ? 'Update Item' : 'Add Item'}</button>
+      <button className="button" type="submit">{editItem ? 'Update Task' : 'Add Task'}</button>
     </form>
   );
 };

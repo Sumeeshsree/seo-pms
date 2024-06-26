@@ -56,7 +56,7 @@ const ItemList = () => {
       <ItemForm addItem={addItem} updateItem={updateItem} editItem={editItem} />
       <div className="header">
         <span>Serial No</span>
-        <span>Item Name</span>
+        <span>Task Name</span>
         <span>Person</span>
         <span>Status</span>
         <span>Start Date</span>
