@@ -3,16 +3,14 @@ import axios from 'axios';
 import './ItemList.css';
 import ItemRow from './ItemRow';
 import ItemForm from './ItemForm';
-import { Link, useHistory } from 'react-router-dom'; // Import useHistory for navigation
+import { Link } from 'react-router-dom';
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState(null);
-  const [showDetail, setShowDetail] = useState(false); // State to manage detail panel
-  const history = useHistory(); // Initialize useHistory for navigation
 
   useEffect(() => {
-    axios.get('https://seo-pms.vercel.app/items')
+    axios.get('http://localhost:5000/items')
       .then(response => {
         setItems(response.data);
       })
@@ -22,7 +20,7 @@ const ItemList = () => {
   }, []);
 
   const addItem = (item) => {
-    axios.post('https://seo-pms.vercel.app/items', item)
+    axios.post('http://localhost:5000/items', item)
       .then(response => {
         setItems([...items, response.data]);
       })
@@ -32,7 +30,7 @@ const ItemList = () => {
   };
 
   const updateItem = (updatedItem) => {
-    axios.put(`https://seo-pms.vercel.app/items/${updatedItem.id}`, updatedItem)
+    axios.put(`http://localhost:5000/items/${updatedItem.id}`, updatedItem)
       .then(response => {
         setItems(items.map(item => (item.id === updatedItem.id ? updatedItem : item)));
         setEditItem(null);
@@ -43,7 +41,7 @@ const ItemList = () => {
   };
 
   const deleteItem = (id) => {
-    axios.delete(`https://seo-pms.vercel.app/items/${id}`)
+    axios.delete(`http://localhost:5000/items/${id}`)
       .then(() => {
         setItems(items.filter(item => item.id !== id));
       })
@@ -52,22 +50,13 @@ const ItemList = () => {
       });
   };
 
-  const toggleDetail = () => {
-    setShowDetail(!showDetail); // Toggle detail panel visibility
-  };
-
-  // Function to navigate to detail view page
-  const navigateToDetail = (taskId) => {
-    history.push(`/detail/${taskId}`);
-  };
-
   return (
     <div className="container">
       <h1 className="title">SEO Items</h1>
       <ItemForm addItem={addItem} updateItem={updateItem} editItem={editItem} />
       <div className="header">
         <span>Serial No</span>
-        <span>Task Name</span>
+        <span>Item Name</span>
         <span>Person</span>
         <span>Status</span>
         <span>Start Date</span>
@@ -82,23 +71,8 @@ const ItemList = () => {
           index={index + 1}
           setEditItem={setEditItem}
           deleteItem={deleteItem}
-          onClickTaskName={() => navigateToDetail(item.id)} // Pass function to handle task name click
         />
       ))}
-      {/* Button to toggle detail panel */}
-      <div className="detail-toggle">
-        <button onClick={toggleDetail}>+</button>
-      </div>
-      {/* Detail Panel */}
-      {showDetail && (
-        <div className="detail-panel">
-          <div className="detail-content">
-            <button className="close-btn" onClick={toggleDetail}>Close</button>
-            <h2>Details Panel</h2>
-            <p>Detail content goes here...</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

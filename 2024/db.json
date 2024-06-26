@@ -3,11 +3,11 @@
     {
       "id": "f747",
       "name": "Pixidev Blog Calendar",
-      "status": "Todo",
+      "status": "Started",
       "link": "https://www.pixidev.com/",
       "person": "Sum",
-      "startDate": "2024-06-25",
-      "deadline": "2024-06-26",
+      "startDate": "25/06/2024",
+      "deadline": "30/06/2024",
       "projectName": "Pixdev"
     },
     {
@@ -39,16 +39,6 @@
       "startDate": "2024-06-25",
       "deadline": "2024-07-06",
       "projectName": "Navira"
-    },
-    {
-      "id": "40f1",
-      "name": "Social Media Activity",
-      "status": "Cancelled",
-      "link": "https://www.pixidev.com/",
-      "person": "Shillu",
-      "startDate": "2024-06-26",
-      "deadline": "2024-06-27",
-      "projectName": "Pixdev"
     }
   ]
 }

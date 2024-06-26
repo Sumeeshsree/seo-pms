@@ -7,7 +7,7 @@ const Report = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://seo-pms.vercel.app/items')
+    axios.get('http://localhost:5000/items')
       .then(response => {
         setItems(response.data);
         setLoading(false);
