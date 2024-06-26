@@ -38,6 +38,7 @@ const ItemForm = ({ addItem, updateItem, editItem }) => {
       } else {
         addItem({ name, status, link, person, startDate, deadline, projectName });
       }
+      // Reset form fields
       setName('');
       setStatus('');
       setLink('');
@@ -50,58 +51,89 @@ const ItemForm = ({ addItem, updateItem, editItem }) => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <input
-        className="input"
-        type="text"
-        placeholder="Item Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        className="input"
-        type="text"
-        placeholder="Person"
-        value={person}
-        onChange={(e) => setPerson(e.target.value)}
-      />
-      <input
-        className="input"
-        type="text"
-        placeholder="Status"
-        value={status}
-        onChange={(e) => setStatus(e.target.value)}
-      />
-      <input
-        className="input"
-        type="text"
-        placeholder="Link"
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
-      />
-      <label htmlFor="startDate">Start Date:</label>
-      <input
-        className="input"
-        type="date"
-        id="startDate"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
-      <label htmlFor="deadline">Deadline:</label>
-      <input
-        className="input"
-        type="date"
-        id="deadline"
-        value={deadline}
-        onChange={(e) => setDeadline(e.target.value)}
-      />
-      <input
-        className="input"
-        type="text"
-        placeholder="Project Name"
-        value={projectName}
-        onChange={(e) => setProjectName(e.target.value)}
-      />
-      <button className="button" type="submit">{editItem ? 'Update Item' : 'Add Item'}</button>
+      <div className="form-group">
+        <label htmlFor="taskName">Task Name:</label>
+        <input
+          className="input"
+          type="text"
+          id="taskName"
+          placeholder="Enter task name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="person">Person:</label>
+        <input
+          className="input"
+          type="text"
+          id="person"
+          placeholder="Enter person"
+          value={person}
+          onChange={(e) => setPerson(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="status">Status:</label>
+        <input
+          className="input"
+          type="text"
+          id="status"
+          placeholder="Enter status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="link">Link:</label>
+        <input
+          className="input"
+          type="text"
+          id="link"
+          placeholder="Enter link"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="startDate">Start Date:</label>
+        <input
+          className="input"
+          type="date"
+          id="startDate"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="deadline">Deadline:</label>
+        <input
+          className="input"
+          type="date"
+          id="deadline"
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="projectName">Project Name:</label>
+        <input
+          className="input"
+          type="text"
+          id="projectName"
+          placeholder="Enter project name"
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)}
+          required
+        />
+      </div>
+      <button className="button" type="submit">{editItem ? 'Update Task' : 'Add Task'}</button>
     </form>
   );
 };
